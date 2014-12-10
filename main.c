@@ -77,7 +77,7 @@ void muestraTablero(char tablero[][MAX_COL +1]){
     printf("\n");
     //Muestra lo que exista en la matriz y añade separador
     for (int fil = 1; fil <= MAX_FIL; fil++) {
-        printf("%i %c",fil,SEP);
+        printf("%i%c",fil,SEP);
         for (int col = 1; col <= MAX_COL; col++) {
             printf("%c%c",tablero[fil][col],SEP);
         }
@@ -114,13 +114,23 @@ void colocaFi(char pieza, char tablero[][MAX_COL + 1], int ubiFi[]){
 }
 void movLineales(char tablero[][MAX_COL +1], int ubiFi[]){
     //origen_Arriba(Filas)
-    for (int fil = ubiFi[0] - 1; fil >= 1; fil--) {tablero[fil][ubiFi[1]] = MOV;}
+    for (int fil = ubiFi[0] - 1; fil >= 1; fil--) {
+        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;}
+    }
     //origen_Abajo(Filas)
-    for (int fil = ubiFi[0] + 1; fil <= MAX_FIL; fil++) {tablero[fil][ubiFi[1]] = MOV;}
+    for (int fil = ubiFi[0] + 1; fil <= MAX_FIL; fil++) {
+        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;}
+    }
     //origen_Derecha (Columnas)
-    for (int col = ubiFi[1] + 1; col <= MAX_COL; col++) {tablero[ubiFi[0]][col] = MOV;}
+    for (int col = ubiFi[1] + 1; col <= MAX_COL; col++) {
+        if (tablero[ubiFi[0]][col] == LUG) {tablero[ubiFi[0]][col] = MOV;}
+    }
     //origen_izquierda (Columnas)
-    for (int col = ubiFi[1] - 1; col >= 1; col--) {tablero[ubiFi[0]][col] = MOV;}
+    for (int col = ubiFi[1] - 1; col >= 1; col--) {
+        if (tablero[ubiFi[0]][col] == LUG) {
+            tablero[ubiFi[0]][col] = MOV;
+        }
+    }
 }
 void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){}
 

@@ -117,6 +117,10 @@ void borrarTab(char tablero[][MAX_COL + 1]){
         //Inicializa nuevamente todas las posiciones
         creaTablero(tablero);
         
+        printf("–––––––––––––\n");
+        printf(" Borrado!!!  \n");
+        printf("–––––––––––––\n");
+        
     }else{
         if (borrarT == 'n' || borrarT == 'N') {
             printf("––––––––––––––––––––––––––––––––\n");
@@ -353,6 +357,7 @@ int main(int argc, const char * argv[]) {
                 break;
             case 3:
                 borrarTab(tableroJ);
+                muestraTablero(tableroJ);
                 break;
             case 4:
                 sal = salir();

@@ -336,7 +336,6 @@ int main(int argc, const char * argv[]) {
     /*---------------------Repetir---------------------------*/
     //Fin de ejecución
     int sal = 0;
-    
     do {
         menuSelec = menuPrinc();
         
@@ -366,7 +365,5 @@ int main(int argc, const char * argv[]) {
                 break;
         }
     } while (sal != 1);
-    
-    
     return 0;
 }

@@ -195,7 +195,22 @@ void movRey(char tablero[][MAX_COL +1], int ubiFi[]){
 
 
 }
-void movCab(char tablero[][MAX_COL +1], int ubiFi[]){}
+void movCab(char tablero[][MAX_COL +1], int ubiFi[]){
+    //tres_arriba_derecha
+    //tres_arriba_izquierda
+    //tres_abajo_derecha
+    //tres_abajo_izquierda
+    //tres_derecha_abajo
+    //tres_derecha_arriba
+    //tres_izquierda_arriba
+    //tres_izquierda_abajo
+    
+    //arriba_tres_derecha
+    //abajo_tres_derecha
+    //derecha_tres_arriba
+    //izquierda_tres_abajo
+
+}
 
 int main(int argc, const char * argv[]) {
     

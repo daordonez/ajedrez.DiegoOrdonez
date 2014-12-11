@@ -316,6 +316,8 @@ int main(int argc, const char * argv[]) {
     
     //Pieza
     char pieza;
+    //Acciones de menu
+    int menuSelec;
     
     //Evitar posiciones 0
     int filasT = MAX_FIL + 1, columT = MAX_COL + 1;
@@ -329,7 +331,7 @@ int main(int argc, const char * argv[]) {
     
     /*---------------------Repetir---------------------------*/
     //Fin de ejecución
-    int menuSelec = 0;
+    int sal = 0;
     
     do {
         menuSelec = menuPrinc();
@@ -353,12 +355,12 @@ int main(int argc, const char * argv[]) {
                 borrarTab(tableroJ);
                 break;
             case 4:
-                menuSelec = salir();
+                sal = salir();
                 break;
             default:
                 break;
         }
-    } while (menuSelec != 1);
+    } while (sal != 1);
     
     
     return 0;

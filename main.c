@@ -70,7 +70,7 @@ void creaTablero(char tablero[][ MAX_COL + 1]){
 }
 void muestraTablero(char tablero[][MAX_COL +1]){
     printf("––––––––––––––––––––\n");
-    printf("  ");
+    printf(" ");
     //Numeros columna
     for (int num = 1; num <= MAX_COL; num++) {printf(" %i", num);}
     
@@ -83,7 +83,7 @@ void muestraTablero(char tablero[][MAX_COL +1]){
         }
         printf("%i\n",fil);
     }
-    printf("  ");
+    printf(" ");
     for (int num = 1; num <= MAX_COL; num++) {printf(" %i", num);}
     printf("\n––––––––––––––––––––\n");
 }
@@ -101,7 +101,7 @@ void cordenadasFi( int conjCord[]){
     
     do {
         printf("\t");
-        printf("Cordenada X:");
+        printf("Cordenada Y:");
         scanf("%i",&tmpY);
         limpiaBuffer();
     } while (tmpY < 0 && tmpY > 8 );
@@ -132,7 +132,32 @@ void movLineales(char tablero[][MAX_COL +1], int ubiFi[]){
         }
     }
 }
-void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){}
+void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){
+    //izquierda_arriba( y--, x-- )
+    for (int fil = ubiFi[0] - 1, col = ubiFi[1] - 1; fil >= 1 && col >= 1; fil--,col--) {
+        if (tablero[fil][col] == LUG) {
+            tablero[fil][col] = MOV;
+        }
+    }
+    //derecha_arriba( y--,x++ )
+    for (int fil = ubiFi[0] - 1, col = ubiFi[1] + 1; fil >= 1 && col <= MAX_COL; fil--, col++) {
+        if (tablero[fil][col] == LUG) {
+            tablero[fil][col] = MOV;
+        }
+    }
+    //izquierda_abajo( y++, x-- )
+    for (int fil = ubiFi[0] + 1, col = ubiFi[1] - 1; fil <= MAX_FIL && col >= 1; fil++, col--) {
+        if (tablero[fil][col] == LUG) {
+            tablero[fil][col] = MOV;
+        }
+    }
+    //derecha_abajo( y++, x++ )
+    for (int fil = ubiFi[0] +1, col = ubiFi[1] + 1; fil <= MAX_FIL && col <= MAX_COL; fil++,col++) {
+        if (tablero[fil][col] == LUG) {
+            tablero[fil][col] = MOV;
+        }
+    }
+}
 
 int main(int argc, const char * argv[]) {
     

@@ -196,19 +196,38 @@ void movRey(char tablero[][MAX_COL +1], int ubiFi[]){
 
 }
 void movCab(char tablero[][MAX_COL +1], int ubiFi[]){
-    //tres_arriba_derecha
-    //tres_arriba_izquierda
-    //tres_abajo_derecha
-    //tres_abajo_izquierda
-    //tres_derecha_abajo
-    //tres_derecha_arriba
-    //tres_izquierda_arriba
-    //tres_izquierda_abajo
-    
-    //arriba_tres_derecha
-    //abajo_tres_derecha
-    //derecha_tres_arriba
-    //izquierda_tres_abajo
+    //dos_arriba_derecha
+    if (tablero[ubiFi[0] - 2][ubiFi[1] + 1] == LUG) {
+        tablero[ubiFi[0] - 2][ubiFi[1] + 1] = MOV;
+    }
+    //dos_arriba_izquierda
+    if (tablero[ubiFi[0] - 2][ubiFi[1] - 1] == LUG) {
+        tablero[ubiFi[0] - 2][ubiFi[1] - 1] = MOV;
+    }
+    //dos_abajo_derecha
+    if (tablero[ubiFi[0] + 2][ubiFi[1] + 1] == LUG) {
+        tablero[ubiFi[0] + 2][ubiFi[1] + 1] = MOV;
+    }
+    //dos_abajo_izquierda
+    if (tablero[ubiFi[0] + 2][ubiFi[1] - 1] == LUG) {
+        tablero[ubiFi[0] + 2][ubiFi[1] - 1] = MOV;
+    }
+    //dos_derecha_arriba
+    if (tablero[ubiFi[0] - 1][ubiFi[1] + 2] == LUG) {
+        tablero[ubiFi[0] - 1][ubiFi[1] + 2] = MOV;
+    }
+    //dos_derecha_abajo
+    if (tablero[ubiFi[0] + 1][ubiFi[1] + 2] == LUG) {
+        tablero[ubiFi[0] + 1][ubiFi[1] + 2] = MOV;
+    }
+    //dos_izquierda_arriba
+    if (tablero[ubiFi[0] - 1][ubiFi[1] - 2] == LUG) {
+        tablero[ubiFi[0] - 1][ubiFi[1] - 2] = MOV;
+    }
+    //dos_izquierda_abajo
+    if (tablero[ubiFi[0] + 1][ubiFi[1] - 2] == LUG) {
+        tablero[ubiFi[0] + 1][ubiFi[1] - 2] = MOV;
+    }
 
 }
 

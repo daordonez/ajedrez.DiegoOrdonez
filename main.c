@@ -158,6 +158,44 @@ void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){
         }
     }
 }
+void movRey(char tablero[][MAX_COL +1], int ubiFi[]){
+    
+    //origen_uno_arriba
+    if (tablero[ubiFi[0] - 1][ubiFi[1]] == LUG) {
+        tablero[ubiFi[0] - 1][ubiFi[1]] = MOV;
+    }
+    //origen_uno_abajo
+    if (tablero[ubiFi[0] + 1][ubiFi[1]] == LUG) {
+        tablero[ubiFi[0] + 1][ubiFi[1]] = MOV;
+    }
+    //origen_uno_derecha
+    if (tablero[ubiFi[0]][ubiFi[1] + 1] == LUG) {
+        tablero[ubiFi[0]][ubiFi[1] + 1] = MOV;
+    }
+    //origen_uno_izquierda
+    if (tablero[ubiFi[0]][ubiFi[1] - 1] == LUG) {
+        tablero[ubiFi[0]][ubiFi[1] - 1] = MOV;
+    }
+    //origen_uno_arribDerecha
+    if (tablero[ubiFi[0] - 1][ubiFi[1] + 1] == LUG) {
+        tablero[ubiFi[0] - 1][ubiFi[1] + 1] = MOV;
+    }
+    //origen_uno_arribIzquierda
+    if (tablero[ubiFi[0] - 1][ubiFi[1] - 1] == LUG) {
+        tablero[ubiFi[0] - 1][ubiFi[1] - 1] = MOV;
+    }
+    //origen_uno_abajDerecha
+    if (tablero[ubiFi[0] + 1][ubiFi[1] + 1] == LUG) {
+        tablero[ubiFi[0] + 1][ubiFi[1] + 1] = MOV;
+    }
+    //origen_uno_abajIzquieda
+    if (tablero[ubiFi[0] + 1][ubiFi[1] - 1] == LUG) {
+        tablero[ubiFi[0] + 1][ubiFi[1] - 1] = MOV;
+    }
+
+
+}
+void movCab(char tablero[][MAX_COL +1], int ubiFi[]){}
 
 int main(int argc, const char * argv[]) {
     

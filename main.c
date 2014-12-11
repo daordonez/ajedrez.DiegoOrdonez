@@ -16,6 +16,37 @@
 #define MOV '+' //Posibles Movimientos
 
 //Funciones
+int menuPrinc(){
+    
+    int seleccion;
+    
+    do {
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("             Ajedrez               \n");
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("1.Mostrar movimientos de una ficha\n");
+        printf("2.Poner impedimiento\n");
+        printf("3.Borrar tablero\n");
+        printf("4.Salir\n");
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("Introduce seleccion: ");
+        scanf("%i",&seleccion);
+        
+    } while (seleccion < 1 && seleccion > 4);
+    
+    return seleccion;
+}
+int salir(){
+    int slc;
+    
+    printf("––––––––––––––\n");
+    printf("  Saliendo... \n");
+    printf("––––––––––––––\n");
+    
+    slc = 1;
+    
+    return slc;
+}
 char selecPieza(){
     
     char pieza;
@@ -65,6 +96,32 @@ void creaTablero(char tablero[][ MAX_COL + 1]){
     for (int fil = 1; fil <= MAX_FIL; fil++) {
         for (int col = 1; col <= MAX_COL; col++) {
             tablero[fil][col] = LUG;
+        }
+    }
+}
+void borrarTab(char tablero[][MAX_COL + 1]){
+    char borrarT;
+    
+    do {
+        printf("––––––––––––––––––––––\n");
+        printf("    Borrar Tablero    \n");
+        printf("––––––––––––––––––––––\n");
+        printf("Acción IRREVERSIBLE!!!\n");
+        printf("¿Continuar?[S/N]: ");
+        scanf("%c",&borrarT);
+        limpiaBuffer();
+        
+    } while (borrarT != 's' && borrarT != 'n' );
+    
+    if (borrarT == 's' || borrarT == 'S') {
+        //Inicializa nuevamente todas las posiciones
+        creaTablero(tablero);
+        
+    }else{
+        if (borrarT == 'n' || borrarT == 'N') {
+            printf("––––––––––––––––––––––––––––––––\n");
+            printf("Volviendo al menu principal <-- \n");
+            printf("––––––––––––––––––––––––––––––––\n");
         }
     }
 }
@@ -230,6 +287,30 @@ void movCab(char tablero[][MAX_COL +1], int ubiFi[]){
     }
 
 }
+void posibMov(char pieza,char tablero[][MAX_COL +1], int ubiFi[]){
+    switch (pieza) {
+        case 'T':
+            movLineales(tablero, ubiFi);
+            break;
+        case 'C':
+            movCab(tablero, ubiFi);
+            break;
+        case 'A':
+            movDiagonal(tablero, ubiFi);
+            break;
+        case 'D':
+            movLineales(tablero, ubiFi);
+            movDiagonal(tablero, ubiFi);
+            break;
+        case 'R':
+            movRey(tablero, ubiFi);
+            break;
+        default:
+            break;
+    }
+    
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -245,16 +326,39 @@ int main(int argc, const char * argv[]) {
     
     //Inicializa Tablero
     creaTablero(tableroJ);
-    /*---------------------Repetir---------------------------*/
-    //Pide tipo de pieza
-    pieza =  selecPieza();
-    //Pide Cordenadas
-    cordenadasFi(ubiFich);
-    //Coloca Ficha
-    colocaFi(pieza, tableroJ, ubiFich);
     
-    //Muestra contenido
-    muestraTablero(tableroJ);
+    /*---------------------Repetir---------------------------*/
+    //Fin de ejecución
+    int menuSelec = 0;
+    
+    do {
+        menuSelec = menuPrinc();
+        
+        switch (menuSelec) {
+            case 1:
+                //Muestra movimientos de una ficha
+                pieza = selecPieza();
+                cordenadasFi(ubiFich);
+                colocaFi(pieza, tableroJ, ubiFich);
+                posibMov(pieza, tableroJ, ubiFich);
+                muestraTablero(tableroJ);
+                break;
+            case 2:
+                //Colocar impedimento
+                pieza = selecPieza();
+                cordenadasFi(ubiFich);
+                colocaFi(pieza, tableroJ, ubiFich);
+                break;
+            case 3:
+                borrarTab(tableroJ);
+                break;
+            case 4:
+                menuSelec = salir();
+                break;
+            default:
+                break;
+        }
+    } while (menuSelec != 1);
     
     
     return 0;

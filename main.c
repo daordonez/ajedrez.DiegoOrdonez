@@ -176,21 +176,23 @@ void colocaFi(char pieza, char tablero[][MAX_COL + 1], int ubiFi[]){
 void movLineales(char tablero[][MAX_COL +1], int ubiFi[]){
     //origen_Arriba(Filas)
     for (int fil = ubiFi[0] - 1; fil >= 1; fil--) {
-        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;}
+        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;
+        }else{break;}
     }
     //origen_Abajo(Filas)
     for (int fil = ubiFi[0] + 1; fil <= MAX_FIL; fil++) {
-        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;}
+        if (tablero[fil][ubiFi[1]] == LUG) {tablero[fil][ubiFi[1]] = MOV;
+        }else{break;}
     }
     //origen_Derecha (Columnas)
     for (int col = ubiFi[1] + 1; col <= MAX_COL; col++) {
-        if (tablero[ubiFi[0]][col] == LUG) {tablero[ubiFi[0]][col] = MOV;}
+        if (tablero[ubiFi[0]][col] == LUG) {tablero[ubiFi[0]][col] = MOV;
+        }else{break;}
     }
     //origen_izquierda (Columnas)
     for (int col = ubiFi[1] - 1; col >= 1; col--) {
-        if (tablero[ubiFi[0]][col] == LUG) {
-            tablero[ubiFi[0]][col] = MOV;
-        }
+        if (tablero[ubiFi[0]][col] == LUG) {tablero[ubiFi[0]][col] = MOV;
+        }else{break;}
     }
 }
 void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){

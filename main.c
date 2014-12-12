@@ -116,10 +116,6 @@ void cordenadasFi( int conjCord[]){
     //Introduccion en vector de cordenadas
     conjCord[0] = tmpY, conjCord[1] = tmpX;
 }
-void colocaFi(char pieza, char tablero[][MAX_COL + 1], int ubiFi[]){
-    
-    tablero[ubiFi[0]][ubiFi[1]] = pieza;
-}
 void movLineales(char tablero[][MAX_COL +1], int ubiFi[]){
     //origen_Arriba(Filas)
     for (int fil = ubiFi[0] - 1; fil >= 1; fil--) {
@@ -263,6 +259,30 @@ void posibMov(char pieza,char tablero[][MAX_COL +1], int ubiFi[]){
     }
     
 }
+int colocaFi(char pieza, char tablero[][MAX_COL + 1], int ubiFi[]){
+    
+    int eColoc = 0;
+    
+    if (tablero[ubiFi[0]][ubiFi[1]] != LUG) {
+        printf("–––––––––––––––––––––––––––––––––––––––––––––––\n");
+        printf("Posción ocupada, Introduce nuevas cordenadas!! \n");
+        printf("–––––––––––––––––––––––––––––––––––––––––––––––\n");
+        
+    }else{
+        tablero[ubiFi[0]][ubiFi[1]] = pieza;
+        eColoc = 1;
+    }
+    
+    return eColoc;
+}
+void ficEnTab(char pieza,char tablero[][MAX_COL +1], int ubiFi[]){
+    int ctrlPieza = 0;
+    //Evitar colocar ficha donde ya está una
+    do {
+        cordenadasFi(ubiFi);
+        ctrlPieza = colocaFi(pieza, tablero, ubiFi);
+    } while (ctrlPieza != 1);
+}
 char selecPieza(){
     
     char pieza = '\0';
@@ -372,8 +392,7 @@ int main(int argc, const char * argv[]) {
             case 1:
                 //Muestra movimientos de una ficha
                 pieza = selecPieza();
-                cordenadasFi(ubiFich);
-                colocaFi(pieza, tableroJ, ubiFich);
+                ficEnTab(pieza, tableroJ, ubiFich);
                 limpiaMovs(tableroJ);
                 posibMov(pieza, tableroJ, ubiFich);
                 muestraTablero(tableroJ);
@@ -382,8 +401,7 @@ int main(int argc, const char * argv[]) {
             case 2:
                 //Colocar impedimento
                 pieza = selecPieza();
-                cordenadasFi(ubiFich);
-                colocaFi(pieza, tableroJ, ubiFich);
+                ficEnTab(pieza, tableroJ, ubiFich);
                 limpiaMovs(tableroJ);
                 muestraTablero(tableroJ);
                 break;

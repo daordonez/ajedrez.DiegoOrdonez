@@ -200,25 +200,25 @@ void movDiagonal(char tablero[][MAX_COL +1], int ubiFi[]){
     for (int fil = ubiFi[0] - 1, col = ubiFi[1] - 1; fil >= 1 && col >= 1; fil--,col--) {
         if (tablero[fil][col] == LUG) {
             tablero[fil][col] = MOV;
-        }
+        }else{break;}
     }
     //derecha_arriba( y--,x++ )
     for (int fil = ubiFi[0] - 1, col = ubiFi[1] + 1; fil >= 1 && col <= MAX_COL; fil--, col++) {
         if (tablero[fil][col] == LUG) {
             tablero[fil][col] = MOV;
-        }
+        }else{break;}
     }
     //izquierda_abajo( y++, x-- )
     for (int fil = ubiFi[0] + 1, col = ubiFi[1] - 1; fil <= MAX_FIL && col >= 1; fil++, col--) {
         if (tablero[fil][col] == LUG) {
             tablero[fil][col] = MOV;
-        }
+        }else{break;}
     }
     //derecha_abajo( y++, x++ )
     for (int fil = ubiFi[0] +1, col = ubiFi[1] + 1; fil <= MAX_FIL && col <= MAX_COL; fil++,col++) {
         if (tablero[fil][col] == LUG) {
             tablero[fil][col] = MOV;
-        }
+        }else{break;}
     }
 }
 void movRey(char tablero[][MAX_COL +1], int ubiFi[]){

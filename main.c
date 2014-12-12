@@ -16,79 +16,13 @@
 #define MOV '+' //Posibles Movimientos
 
 //Funciones
-int menuPrinc(){
-    
-    int seleccion;
-    
-    do {
-        printf("–––––––––––––––––––––––––––––––––––\n");
-        printf("             Ajedrez               \n");
-        printf("–––––––––––––––––––––––––––––––––––\n");
-        printf("1.Mostrar movimientos de una ficha\n");
-        printf("2.Poner impedimiento\n");
-        printf("3.Borrar tablero\n");
-        printf("4.Salir\n");
-        printf("–––––––––––––––––––––––––––––––––––\n");
-        printf("Introduce seleccion: ");
-        scanf("%i",&seleccion);
-        
-    } while (seleccion < 1 && seleccion > 4);
-    
-    return seleccion;
-}
-int salir(){
-    int slc;
-    
-    printf("––––––––––––––\n");
-    printf("  Saliendo... \n");
-    printf("––––––––––––––\n");
-    
-    slc = 1;
-    
-    return slc;
-}
-char selecPieza(){
-    
-    char pieza;
-    int slc;
-    
-    printf("––––––––––––––––––––\n");
-    printf("Seleccione Pieza\n");
-    printf("––––––––––––––––––––\n");
-    printf("1.Torre\n");
-    printf("2.Caballo\n");
-    printf("3.Alfil\n");
-    printf("4.Dama\n");
-    printf("5.Rey\n");
-    printf("––––––––––––––––––––\n");
-    printf("Introduza seleccion: ");
-    scanf("%i",&slc);
-    
-    switch (slc) {
-        case 1:
-            pieza = 'T';
-            break;
-        case 2:
-            pieza = 'C';
-            break;
-        case 3:
-            pieza = 'A';
-            break;
-        case 4:
-            pieza = 'D';
-            break;
-        case 5:
-            pieza = 'R';
-            break;
-        default:
-            printf("Opcion incorrecta.\n");
-            break;
-    }
-    
-    return pieza;
-}
 void limpiaBuffer(){
     while( getchar() != '\n');
+}
+void muestraError(){
+    printf("––––––––––––––––––––––––\n");
+    printf("   Opción incorrecta!!  \n");
+    printf("––––––––––––––––––––––––\n");
 }
 void creaTablero(char tablero[][ MAX_COL + 1]){
     
@@ -114,6 +48,7 @@ void borrarTab(char tablero[][MAX_COL + 1]){
     char borrarT;
     
     do {
+        printf("\n");
         printf("––––––––––––––––––––––\n");
         printf("    Borrar Tablero    \n");
         printf("––––––––––––––––––––––\n");
@@ -121,7 +56,7 @@ void borrarTab(char tablero[][MAX_COL + 1]){
         printf("¿Continuar?[S/N]: ");
         scanf("%c",&borrarT);
         
-    } while (borrarT != 's' && borrarT != 'n' );
+    } while (borrarT != 's' && borrarT != 'n' && borrarT != 'N' && borrarT != 'S' );
     
     limpiaBuffer();
     if (borrarT == 's' || borrarT == 'S') {
@@ -182,6 +117,7 @@ void cordenadasFi( int conjCord[]){
     conjCord[0] = tmpY, conjCord[1] = tmpX;
 }
 void colocaFi(char pieza, char tablero[][MAX_COL + 1], int ubiFi[]){
+    
     tablero[ubiFi[0]][ubiFi[1]] = pieza;
 }
 void movLineales(char tablero[][MAX_COL +1], int ubiFi[]){
@@ -327,6 +263,87 @@ void posibMov(char pieza,char tablero[][MAX_COL +1], int ubiFi[]){
     }
     
 }
+char selecPieza(){
+    
+    char pieza = '\0';
+    int slc,error = 0;
+    
+    do {
+        printf("––––––––––––––––––––\n");
+        printf("Seleccione Pieza\n");
+        printf("––––––––––––––––––––\n");
+        printf("1.Torre\n");
+        printf("2.Caballo\n");
+        printf("3.Alfil\n");
+        printf("4.Dama\n");
+        printf("5.Rey\n");
+        printf("––––––––––––––––––––\n");
+        printf("Introduza seleccion: ");
+        scanf("%i",&slc);
+        limpiaBuffer();
+        
+        switch (slc) {
+            case 1:
+                pieza = 'T';
+                error = 1;
+                break;
+            case 2:
+                pieza = 'C';
+                error = 1;
+                break;
+            case 3:
+                pieza = 'A';
+                error = 1;
+                break;
+            case 4:
+                pieza = 'D';
+                error = 1;
+                break;
+            case 5:
+                pieza = 'R';
+                error = 1;
+                break;
+            default:
+                muestraError();
+                break;
+        }
+
+    } while (error != 1);
+    
+    return pieza;
+}
+int menuPrinc(){
+    
+    int seleccion;
+    
+    do {
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("             Ajedrez               \n");
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("1.Mostrar movimientos de una ficha\n");
+        printf("2.Poner impedimiento\n");
+        printf("3.Borrar tablero\n");
+        printf("4.Salir\n");
+        printf("–––––––––––––––––––––––––––––––––––\n");
+        printf("Introduce seleccion: ");
+        scanf("%i",&seleccion);
+        limpiaBuffer();
+        
+    } while (seleccion < 1 && seleccion > 4);
+    
+    return seleccion;
+}
+int salir(){
+    int slc;
+    
+    printf("––––––––––––––\n");
+    printf("  Saliendo... \n");
+    printf("––––––––––––––\n");
+    
+    slc = 1;
+    
+    return slc;
+}
 
 
 int main(int argc, const char * argv[]) {
@@ -346,7 +363,6 @@ int main(int argc, const char * argv[]) {
     //Inicializa Tablero
     creaTablero(tableroJ);
     
-    /*---------------------Repetir---------------------------*/
     //Fin de ejecución
     int sal = 0;
     do {
@@ -358,7 +374,6 @@ int main(int argc, const char * argv[]) {
                 pieza = selecPieza();
                 cordenadasFi(ubiFich);
                 colocaFi(pieza, tableroJ, ubiFich);
-                //limpiar movimientos para que cada vez tenga espacio
                 limpiaMovs(tableroJ);
                 posibMov(pieza, tableroJ, ubiFich);
                 muestraTablero(tableroJ);
@@ -373,13 +388,16 @@ int main(int argc, const char * argv[]) {
                 muestraTablero(tableroJ);
                 break;
             case 3:
+                //Reinicializa tablero de juego
                 borrarTab(tableroJ);
                 muestraTablero(tableroJ);
                 break;
             case 4:
+                //salir
                 sal = salir();
                 break;
             default:
+                muestraError();
                 break;
         }
     } while (sal != 1);

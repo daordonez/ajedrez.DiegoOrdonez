@@ -109,13 +109,19 @@ void borrarTab(char tablero[][MAX_COL + 1]){
         printf("Acción IRREVERSIBLE!!!\n");
         printf("¿Continuar?[S/N]: ");
         scanf("%c",&borrarT);
-        limpiaBuffer();
         
     } while (borrarT != 's' && borrarT != 'n' );
     
+    limpiaBuffer();
     if (borrarT == 's' || borrarT == 'S') {
         //Inicializa nuevamente todas las posiciones
-        creaTablero(tablero);
+        for (int fil = 1; fil <= MAX_FIL; fil++) {
+            for (int col = 1; col <= MAX_COL; col++) {
+                if (tablero[fil][col] == MOV) {
+                    tablero[fil][col] = LUG;
+                }
+            }
+        }
         
         printf("–––––––––––––\n");
         printf(" Borrado!!!  \n");

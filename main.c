@@ -99,6 +99,17 @@ void creaTablero(char tablero[][ MAX_COL + 1]){
         }
     }
 }
+void limpiaMovs(char tablero[][MAX_COL +1]){
+    
+    for (int fil = 1; fil <= MAX_FIL; fil++) {
+        for (int col = 1; col <= MAX_COL; col++) {
+            if (tablero[fil][col] == MOV) {
+                tablero[fil][col] = LUG;
+            }
+        }
+    }
+    
+}
 void borrarTab(char tablero[][MAX_COL + 1]){
     char borrarT;
     
@@ -115,13 +126,7 @@ void borrarTab(char tablero[][MAX_COL + 1]){
     limpiaBuffer();
     if (borrarT == 's' || borrarT == 'S') {
         //Inicializa nuevamente todas las posiciones
-        for (int fil = 1; fil <= MAX_FIL; fil++) {
-            for (int col = 1; col <= MAX_COL; col++) {
-                if (tablero[fil][col] == MOV) {
-                    tablero[fil][col] = LUG;
-                }
-            }
-        }
+        creaTablero(tablero);
         
         printf("–––––––––––––\n");
         printf(" Borrado!!!  \n");
@@ -353,14 +358,19 @@ int main(int argc, const char * argv[]) {
                 pieza = selecPieza();
                 cordenadasFi(ubiFich);
                 colocaFi(pieza, tableroJ, ubiFich);
+                //limpiar movimientos para que cada vez tenga espacio
+                limpiaMovs(tableroJ);
                 posibMov(pieza, tableroJ, ubiFich);
                 muestraTablero(tableroJ);
+                limpiaMovs(tableroJ);
                 break;
             case 2:
                 //Colocar impedimento
                 pieza = selecPieza();
                 cordenadasFi(ubiFich);
                 colocaFi(pieza, tableroJ, ubiFich);
+                limpiaMovs(tableroJ);
+                muestraTablero(tableroJ);
                 break;
             case 3:
                 borrarTab(tableroJ);
